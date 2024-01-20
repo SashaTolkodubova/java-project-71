@@ -15,6 +15,17 @@ public class App implements Runnable {
         new CommandLine(new App()).execute("-h");
     }
 
+    @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
+    private String file1Path;
+
+    @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
+    private String file2Path;
+
+    @Option(names = {"-f", "--format"}
+            , description = "output format [default: stylish]"
+    , paramLabel = "format")
+    String format;
+
     @Option(names = {"-h", "--Help"}
             , usageHelp = true
             , description = "Show this help message and exit.")
@@ -24,6 +35,7 @@ public class App implements Runnable {
             , versionHelp = true
             , description = "Print version information and exit.")
     boolean versionHelp;
+
 
     @Override
     public void run() {
