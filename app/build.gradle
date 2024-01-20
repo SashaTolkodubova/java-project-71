@@ -13,10 +13,14 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    implementation group: 'info.picocli', name: 'picocli', version: '4.7.5'
 }
 application {
     mainClass = 'hexlet.code.App'
 }
 test {
     useJUnitPlatform()
+}
+compileJava {
+    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
