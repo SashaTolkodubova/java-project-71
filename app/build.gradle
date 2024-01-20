@@ -14,6 +14,8 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     implementation group: 'info.picocli', name: 'picocli', version: '4.7.5'
+    implementation group: 'com.fasterxml.jackson.core',
+            name: 'jackson-databind', version: '2.16.1'
 }
 application {
     mainClass = 'hexlet.code.App'

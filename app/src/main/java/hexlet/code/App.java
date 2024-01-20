@@ -6,13 +6,16 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.util.SortedMap;
+import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 0.1",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Runnable {
+public class App implements Callable<Integer> {
 
     public static void main(String[] args) {
-        new CommandLine(new App()).execute("-h");
+//        new CommandLine(new App()).execute("files/file1.json", "files/file2.json");
+        new CommandLine(new App()).execute(args);
+
     }
 
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
@@ -23,7 +26,7 @@ public class App implements Runnable {
 
     @Option(names = {"-f", "--format"}
             , description = "output format [default: stylish]"
-    , paramLabel = "format")
+            , paramLabel = "format")
     String format;
 
     @Option(names = {"-h", "--Help"}
@@ -38,7 +41,9 @@ public class App implements Runnable {
 
 
     @Override
-    public void run() {
-        System.out.println("Hello");
+    public Integer call() throws Exception {
+        String result = Differ.generate(file1Path, file2Path);
+        System.out.println(result);
+        return 0;
     }
 }
