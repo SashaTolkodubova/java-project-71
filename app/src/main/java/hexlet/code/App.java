@@ -5,7 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.util.SortedMap;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 0.1",
@@ -13,8 +12,9 @@ import java.util.concurrent.Callable;
 public class App implements Callable<Integer> {
 
     public static void main(String[] args) {
-//        new CommandLine(new App()).execute("files/file1.json", "files/file2.json");
-        new CommandLine(new App()).execute(args);
+
+        new CommandLine(new App()).execute("files/file1.json", "files/file2.json");
+//        new CommandLine(new App()).execute(args);
 
     }
 
@@ -24,19 +24,13 @@ public class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     private String file2Path;
 
-    @Option(names = {"-f", "--format"}
-            , description = "output format [default: stylish]"
-            , paramLabel = "format")
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format")
     String format;
 
-    @Option(names = {"-h", "--Help"}
-            , usageHelp = true
-            , description = "Show this help message and exit.")
+    @Option(names = {"-h", "--Help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean help;
 
-    @Option(names = {"-V", "--version"}
-            , versionHelp = true
-            , description = "Print version information and exit.")
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     boolean versionHelp;
 
 

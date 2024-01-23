@@ -1,6 +1,9 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
@@ -57,6 +60,7 @@ public class Differ {
         if (value1.equals(value2)) {
             stringBuilder.append("  ");
             stringBuilder.append(key);
+            stringBuilder.append(": ");
             stringBuilder.append(value1);
         } else {
             stringBuilder.append("- ");
