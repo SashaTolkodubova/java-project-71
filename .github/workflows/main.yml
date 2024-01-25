@@ -7,7 +7,7 @@ jobs:
     - name: Print to console
       run: echo Hell GH Actions!
     - name: Print a few lines
-    run: |
-      echo First line!
-      echo Second line!
+      run: |
+        echo First line!
+        echo Second line!
       
