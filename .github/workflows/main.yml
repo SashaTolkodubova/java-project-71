@@ -12,4 +12,4 @@ jobs:
           distribution: oracle
           java-version: '21'
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./app/gradlew build
