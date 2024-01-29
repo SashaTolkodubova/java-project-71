@@ -1,7 +1,7 @@
 name: Demo Workflow
 on: push
 jobs:
-  mt_test:
+  my_test:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
@@ -12,4 +12,7 @@ jobs:
           distribution: oracle
           java-version: '21'
       - name: Build with Gradle
-        run: ./app/gradlew build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+          build-root-directory: app
