@@ -27,6 +27,7 @@ application {
 }
 tasks.test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 
 //    testLogging {
 //        exceptionFormat = TestExceptionFormat.FULL
@@ -39,4 +40,7 @@ tasks.test {
 tasks.compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+tasks.jacocoTestReport {
+    dependsOn test
+    reports { xml.required.set(true) }
+}
