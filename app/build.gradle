@@ -22,6 +22,9 @@ dependencies {
     implementation group: 'info.picocli', name: 'picocli', version: '4.7.5'
     implementation group: 'com.fasterxml.jackson.core',
             name: 'jackson-databind', version: '2.16.1'
+    implementation group: 'com.fasterxml.jackson.dataformat',
+            name: 'jackson-dataformat-yaml', version: '2.0.5'
+
 }
 application {
     mainClass = 'hexlet.code.App'
