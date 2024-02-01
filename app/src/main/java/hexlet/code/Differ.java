@@ -21,6 +21,13 @@ public class Differ {
         return implementFormatter(file1Map, file2Map, formatter);
     }
 
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        Parser parser = new Parser();
+        HashMap file1Map = parser.getMap(filePath1);
+        HashMap file2Map = parser.getMap(filePath2);
+        return implementFormatter(file1Map, file2Map, "stylish");
+    }
+
     private static String implementFormatter(HashMap file1, HashMap file2, String formatter) throws IOException {
         LinkedHashMap<String, Object> reusltOfGenDiff = generateDifferences(file1, file2);
 
