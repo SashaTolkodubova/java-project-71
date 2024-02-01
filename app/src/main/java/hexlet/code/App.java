@@ -24,8 +24,9 @@ public class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     private String file2Path;
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format")
-    String format;
+    @Option(names = {"-f", "--format"}, description = "output format [default: ${DEFAULT-VALUE}]",
+            paramLabel = "format")
+    String format = "stylish";
 
     @Option(names = {"-h", "--Help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean help;
@@ -36,7 +37,7 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        String result = Differ.generate(file1Path, file2Path);
+        String result = Differ.generate(file1Path, file2Path, format);
         System.out.println(result);
         return 0;
     }

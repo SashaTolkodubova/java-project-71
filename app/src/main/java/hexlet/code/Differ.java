@@ -1,80 +1,92 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Stylish;
+
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.List;
 
+
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+
+    public static String generate(String filePath1, String filePath2, String formatter) throws Exception {
         Parser parser = new Parser();
         HashMap file1Map = parser.getMap(filePath1);
         HashMap file2Map = parser.getMap(filePath2);
-        return differ(file1Map, file2Map);
+        return implementFormatter(file1Map, file2Map, formatter);
     }
 
-    private static String differ(HashMap file1, HashMap file2) {
+    private static String implementFormatter(HashMap file1, HashMap file2, String formatter) {
+        LinkedHashMap<String, Object> reusltOfGenDiff = generateDifferences(file1, file2);
+
+        if (formatter.equals("stylish")) {
+            return Stylish.getResult(reusltOfGenDiff);
+        } else {
+            return null;
+        }
+    }
+
+
+    static LinkedHashMap<String, Object> generateDifferences(HashMap file1, HashMap file2) {
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         var keySet1 = file1.keySet();
         var keySet2 = file2.keySet();
         Set<String> keySet = new HashSet<>();
-        StringBuilder stringBuilder = new StringBuilder();
-
         keySet.addAll(keySet1);
         keySet.addAll(keySet2);
         List keySetList = keySet.stream().sorted().toList();
 
-        stringBuilder.append("{");
-        stringBuilder.append("\n");
-
         for (Object key : keySetList) {
-            stringBuilder.append(keyDiff(key, file1, file2));
-            stringBuilder.append("\n");
-        }
-        stringBuilder.append("}");
+            if (file1.containsKey(key) && file2.containsKey(key)) {
+                diffOfValues(key, file1, file2, result);
+            } else if (file1.containsKey(key) && !file2.containsKey(key)) {
+                String abscencedKey = "- " + key;
+                result.put(abscencedKey, file1.get(key));
 
-
-        return stringBuilder.toString();
-    }
-
-    private static String keyDiff(Object key, HashMap file1, HashMap file2) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (file1.containsKey(key) && file2.containsKey(key)) {
-            stringBuilder.append(valueDiff(key, file1.get(key), file2.get(key)));
-        } else if (file1.containsKey(key) && !file2.containsKey(key)) {
-            stringBuilder.append("- ");
-            stringBuilder.append(key);
-            stringBuilder.append(": ");
-            stringBuilder.append(file1.get(key));
-        } else if (!file1.containsKey(key) && file2.containsKey(key)) {
-            stringBuilder.append("+ ");
-            stringBuilder.append(key);
-            stringBuilder.append(": ");
-            stringBuilder.append(file2.get(key));
+            } else if (!file1.containsKey(key) && file2.containsKey(key)) {
+                String containedKey = "+ " + key;
+                result.put(containedKey, file2.get(key));
+            }
         }
 
-        return stringBuilder.toString();
+        return result;
     }
 
-    private static String valueDiff(Object key, Object value1, Object value2) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (value1.equals(value2)) {
-            stringBuilder.append("  ");
-            stringBuilder.append(key);
-            stringBuilder.append(": ");
-            stringBuilder.append(value1);
+    private static void diffOfValues(Object key, HashMap file1, HashMap file2, LinkedHashMap<String, Object> result) {
+        if ((file1.get(key) == null) || (file2.get(key) == null)) {
+            diffOfValuesWithNull(key, file1, file2, result);
         } else {
-            stringBuilder.append("- ");
-            stringBuilder.append(key);
-            stringBuilder.append(": ");
-            stringBuilder.append(value1);
-            stringBuilder.append("\n");
-            stringBuilder.append("+ ");
-            stringBuilder.append(key);
-            stringBuilder.append(": ");
-            stringBuilder.append(value2);
+            diffOfValuesWithOutNull(key, file1, file2, result);
         }
 
-        return stringBuilder.toString();
+    }
+
+    private static void diffOfValuesWithOutNull(Object key, HashMap file1, HashMap file2, LinkedHashMap<String,
+            Object> result) {
+        if (file1.get(key).equals(file2.get(key))) {
+            String newKey = "  " + key;
+            result.put(newKey, file1.get(key));
+        } else {
+            String keyFile1 = "- " + key;
+            String keyFile2 = "+ " + key;
+            result.put(keyFile1, file1.get(key));
+            result.put(keyFile2, file2.get(key));
+        }
+    }
+
+    private static void diffOfValuesWithNull(Object key, HashMap file1, HashMap file2, LinkedHashMap<String,
+            Object> result) {
+        if (file1.get(key) == (file2.get(key))) {
+            String newKey = "  " + key;
+            result.put(newKey, file1.get(key));
+        } else {
+            String keyFile1 = "- " + key;
+            String keyFile2 = "+ " + key;
+            result.put(keyFile1, file1.get(key));
+            result.put(keyFile2, file2.get(key));
+        }
     }
 
 }
