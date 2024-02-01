@@ -1,8 +1,10 @@
 package hexlet.code;
 
+import hexlet.code.formatters.JSON;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -19,14 +21,16 @@ public class Differ {
         return implementFormatter(file1Map, file2Map, formatter);
     }
 
-    private static String implementFormatter(HashMap file1, HashMap file2, String formatter) {
+    private static String implementFormatter(HashMap file1, HashMap file2, String formatter) throws IOException {
         LinkedHashMap<String, Object> reusltOfGenDiff = generateDifferences(file1, file2);
 
         if (formatter.equals("stylish")) {
             return Stylish.getResult(reusltOfGenDiff);
-        }
-        if (formatter.equals("plain")) {
+        } else if (formatter.equals("plain")) {
             return Plain.getResult(reusltOfGenDiff);
+        } else if (formatter.equals("json")) {
+            JSON.getResult(reusltOfGenDiff);
+            return "Written to file";
         } else {
             return null;
         }

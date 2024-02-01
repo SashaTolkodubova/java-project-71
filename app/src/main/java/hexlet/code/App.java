@@ -11,22 +11,16 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
 
-    public static void main(String[] args) {
-
-        new CommandLine(new App()).execute("files/file1.json", "files/file2.json");
-//        new CommandLine(new App()).execute(args);
-
-    }
-
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
-    private String file1Path;
+    private static String file1Path;
 
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
-    private String file2Path;
+    private static String file2Path;
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: ${DEFAULT-VALUE}]",
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
+            description = "output format [default: ${DEFAULT-VALUE}]",
             paramLabel = "format")
-    String format = "stylish";
+    private static String format;
 
     @Option(names = {"-h", "--Help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean help;
@@ -40,5 +34,12 @@ public class App implements Callable<Integer> {
         String result = Differ.generate(file1Path, file2Path, format);
         System.out.println(result);
         return 0;
+    }
+
+    public static void main(String[] args) throws Exception {
+        CommandLine commandLine = new CommandLine(new App());
+        commandLine.execute("files/file1.json", "files/file2.json");
+
+
     }
 }
