@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class Differ {
 
         if (formatter.equals("stylish")) {
             return Stylish.getResult(reusltOfGenDiff);
+        }
+        if (formatter.equals("plain")) {
+            return Plain.getResult(reusltOfGenDiff);
         } else {
             return null;
         }

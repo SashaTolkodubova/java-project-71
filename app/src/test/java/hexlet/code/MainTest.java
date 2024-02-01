@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class MainTest {
     @Test
-    public void testDifferJSON() throws Exception {
+    public void testDifferJSONStylish() throws Exception {
         String expected = "{\n"
                 + "  chars1: [a, b, c]\n"
                 + "- chars2: [d, e, f]\n"
@@ -39,7 +39,7 @@ public class MainTest {
     }
 
     @Test
-    public void testDifferYML() throws Exception {
+    public void testDifferYMLStylish() throws Exception {
         String expected = "{\n"
                 + "  chars1: [a, b, c]\n"
                 + "- chars2: [d, e, f]\n"
@@ -68,6 +68,28 @@ public class MainTest {
         String path1 = "src/test/resources/file1.yml";
         String path2 = "src/test/resources/file2.yml";
         String actual = Differ.generate(path1, path2, "stylish");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDifferJSONPlain() throws Exception {
+        String expected = "Property 'chars2' was updated. From [complex value] to false\n"
+                + "Property 'checked' was updated. From false to true\n"
+                + "Property 'default' was updated. From null to [complex value]\n"
+                + "Property 'id' was updated. From 45 to null\n"
+                + "Property 'key1' was removed\n"
+                + "Property 'key2' was added with value: 'value2'\n"
+                + "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
+                + "Property 'numbers3' was removed\n"
+                + "Property 'numbers4' was added with value: [complex value]\n"
+                + "Property 'obj1' was added with value: [complex value]\n"
+                + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
+                + "Property 'setting2' was updated. From 200 to 300\n"
+                + "Property 'setting3' was updated. From true to 'none'\n";
+
+        String path1 = "src/test/resources/file1.json";
+        String path2 = "src/test/resources/file2.json";
+        String actual = Differ.generate(path1, path2, "plain");
         Assertions.assertEquals(expected, actual);
     }
 }
