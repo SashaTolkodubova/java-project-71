@@ -20,7 +20,7 @@ public class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             description = "output format [default: ${DEFAULT-VALUE}]",
             paramLabel = "format")
-    private static String format;
+    private static String format = "stylish";
 
     @Option(names = {"-h", "--Help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean help;
