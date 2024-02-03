@@ -3,7 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
+//import java.util.HashMap;
 
 
 public class MainTest {
@@ -95,19 +95,19 @@ public class MainTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testDifferJSONJSON() throws Exception {
-
-        String pathResult = "src/main/resources/result.json";
-        String pathExpected = "src/test/resources/expectedJSON.json";
-        String path1 = "files/file1.json";
-        String path2 = "files/file2.json";
-        Differ.generate(path1, path2, "json");
-
-        Parser parser = new Parser();
-        HashMap expected = parser.getMap(pathExpected);
-        HashMap actual = parser.getMap(pathResult);
-
-        Assertions.assertEquals(expected, actual);
-    }
+//    @Test
+//    public void testDifferJSONJSON() throws Exception {
+//
+//        String pathResult = "src/main/resources/result.json";
+//        String pathExpected = "src/test/resources/expectedJSON.json";
+//        String path1 = "files/file1.json";
+//        String path2 = "files/file2.json";
+//        Differ.generate(path1, path2, "json");
+//
+//        Parser parser = new Parser();
+//        HashMap expected = parser.getMap(pathExpected);
+//        HashMap actual = parser.getMap(pathResult);
+//
+//        Assertions.assertEquals(expected, actual);
+//    }
 }

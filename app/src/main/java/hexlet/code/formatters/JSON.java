@@ -9,6 +9,6 @@ import java.util.LinkedHashMap;
 public class JSON {
     public static void getResult(LinkedHashMap<String, Object> hashMap) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new File("src/main/resources/result.json"), hashMap);
+        objectMapper.writeValue(new File("app/src/main/resources/result.json"), hashMap);
     }
 }
