@@ -11,11 +11,10 @@ import java.util.LinkedHashMap;
 public class JSON {
     public static String getResult(LinkedHashMap<String, Object> hashMap) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String result = objectMapper.writeValueAsString(hashMap);
-//        BufferedWriter writer = new BufferedWriter(new FileWriter("app/src/main/resources/result.json"));
+        //        BufferedWriter writer = new BufferedWriter(new FileWriter("app/src/main/resources/result.json"));
 //        writer.write(result);
 //        writer.close();
 
-        return result;
+        return objectMapper.writeValueAsString(hashMap);
     }
 }

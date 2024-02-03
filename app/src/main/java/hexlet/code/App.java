@@ -4,7 +4,6 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 0.1",
@@ -20,7 +19,7 @@ public class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             description = "output format [default: ${DEFAULT-VALUE}]",
             paramLabel = "format")
-    private static String format = "stylish";
+    private static String format;
 
     @Option(names = {"-h", "--Help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean help;
@@ -39,7 +38,7 @@ public class App implements Callable<Integer> {
 
     public static void main(String[] args) throws Exception {
         CommandLine commandLine = new CommandLine(new App());
-//        commandLine.execute("app/src/test/resources/fixtures/file1.json",
-//                "app/src/test/resources/fixtures/file2.json");
+        commandLine.execute(args);
+
     }
 }

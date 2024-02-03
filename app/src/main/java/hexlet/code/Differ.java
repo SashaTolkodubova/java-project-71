@@ -35,7 +35,6 @@ public class Differ {
         } else if (formatter.equals("plain")) {
             return Plain.getResult(reusltOfGenDiff);
         } else if (formatter.equals("json")) {
-            JSON.getResult(reusltOfGenDiff);
             return JSON.getResult(reusltOfGenDiff);
         } else {
             return null;
