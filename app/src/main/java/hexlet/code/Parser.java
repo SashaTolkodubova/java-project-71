@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+public final class Parser {
     public HashMap getMap(String filePath) throws Exception {
         ObjectMapper mapperJSON = new JsonMapper();
         ObjectMapper mapperYML = new YAMLMapper();
