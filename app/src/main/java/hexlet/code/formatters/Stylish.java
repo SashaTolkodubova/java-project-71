@@ -12,13 +12,14 @@ public class Stylish {
         stringBuilder.append("\n");
 
         for (String key: keys) {
+            stringBuilder.append("  ");
             stringBuilder.append(key);
             stringBuilder.append(": ");
             stringBuilder.append(hashMap.get(key));
             stringBuilder.append("\n");
         }
-
         stringBuilder.append("}");
+        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 }

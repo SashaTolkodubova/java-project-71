@@ -30,7 +30,6 @@ public class Differ {
 
     private static String implementFormatter(HashMap file1, HashMap file2, String formatter) throws IOException {
         LinkedHashMap<String, Object> reusltOfGenDiff = generateDifferences(file1, file2);
-
         if (formatter.equals("stylish")) {
             return Stylish.getResult(reusltOfGenDiff);
         } else if (formatter.equals("plain")) {
@@ -65,7 +64,6 @@ public class Differ {
                 result.put(containedKey, file2.get(key));
             }
         }
-
         return result;
     }
 
