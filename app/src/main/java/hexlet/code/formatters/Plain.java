@@ -19,7 +19,6 @@ public class Plain {
             } else if (key1.charAt(0) == '+') {
                 stringBuilder.append(wasAdded(key1, hashMap.get(key1)));
             }
-            String sss = stringBuilder.toString();
         }
         int lastKeyIndex = keys.size() - 1;
         String lastKey = keys.get(lastKeyIndex);
@@ -28,6 +27,7 @@ public class Plain {
                 && !(lastKey.substring(2).equals(keyBeforeLAst.substring(2)))) {
             stringBuilder.append(checkLastValues(lastKey, hashMap.get(lastKey)));
         }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         return stringBuilder.toString();
     }
 
