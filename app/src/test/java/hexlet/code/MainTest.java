@@ -33,7 +33,7 @@ public class MainTest {
                 + "  + setting2: 300\n"
                 + "  - setting3: true\n"
                 + "  + setting3: none\n"
-                + "}\n";
+                + "}";
         String path1 = "src/test/resources/file1.json";
         String path2 = "src/test/resources/file2.json";
         String actual = Differ.generate(path1, path2, "stylish");
@@ -66,7 +66,7 @@ public class MainTest {
                 + "  + setting2: 300\n"
                 + "  - setting3: true\n"
                 + "  + setting3: none\n"
-                + "}\n";
+                + "}";
         String path1 = "src/test/resources/file1.yml";
         String path2 = "src/test/resources/file2.yml";
         String actual = Differ.generate(path1, path2, "stylish");
@@ -137,8 +137,7 @@ public class MainTest {
                   + setting2: 300
                   - setting3: true
                   + setting3: none
-                }
-                """;
+                }""";
 
         String path1 = "src/test/resources/fixtures/file1.json";
         String path2 = "src/test/resources/fixtures/file2.json";

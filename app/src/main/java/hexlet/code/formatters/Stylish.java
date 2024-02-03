@@ -19,7 +19,7 @@ public class Stylish {
             stringBuilder.append("\n");
         }
         stringBuilder.append("}");
-        stringBuilder.append("\n");
+//        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 }
