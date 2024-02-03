@@ -36,7 +36,7 @@ public class Differ {
             return Plain.getResult(reusltOfGenDiff);
         } else if (formatter.equals("json")) {
             JSON.getResult(reusltOfGenDiff);
-            return "Written to file";
+            return JSON.getResult(reusltOfGenDiff);
         } else {
             return null;
         }
