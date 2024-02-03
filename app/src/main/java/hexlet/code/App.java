@@ -32,16 +32,14 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         String result = Differ.generate(file1Path, file2Path, format);
-        System.out.println(result + "x");
+        System.out.println(result);
 
         return 0;
     }
 
     public static void main(String[] args) throws Exception {
         CommandLine commandLine = new CommandLine(new App());
-        commandLine.execute("app/src/test/resources/fixtures/file1.json",
-                "app/src/test/resources/fixtures/file2.json");
-
-
+//        commandLine.execute("app/src/test/resources/fixtures/file1.json",
+//                "app/src/test/resources/fixtures/file2.json");
     }
 }
